@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/summary', [ExpensionController::class, 'index'])->name('expenses.index');
+Route::get('/summary', [ExpensionController::class, 'index'])->name('expenses.index')->middleware('auth');
 
-Route::get('/addExpanses', [ExpensionController::class, 'create'])->name('expenses.create');
-Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expenses.store');
+Route::get('/addExpanses', [ExpensionController::class, 'create'])->name('expenses.create')->middleware('auth');
+Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expenses.store')->middleware('auth');
