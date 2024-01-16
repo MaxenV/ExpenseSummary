@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExpensionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/summary', function () {
-    return view('expenses/expensesSummary');
-});
-Route::get('/addExpanses', function () {
-    return view('expenses/addExpenses');
-});
+Route::get('/summary', [ExpensionController::class, 'index'])->name('expenses.index');
+Route::get('/addExpanses', [ExpensionController::class, 'create'])->name('expenses.create');
