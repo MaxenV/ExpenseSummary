@@ -5,19 +5,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Dodawanie wydatku') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('expenses.store') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nazwa') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('name') }}" required autofocus autocomplete="name">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -28,15 +28,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                <label for="price"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Cena jednostki') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="price" type="number" step="0.01" min="0"
+                                        class="form-control @error('price') is-invalid @enderror" name="price"
+                                        value="{{ old('price') }}" required autocomplete="price">
 
-                                    @error('email')
+                                    @error('price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -45,15 +45,35 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                <label for="quantity"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Ilość') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                    <input id="quantity" type="number" min="0"
+                                        class="form-control @error('quantity') is-invalid @enderror" name="quantity"
+                                        required autocomplete="new-quantity">
 
-                                    @error('password')
+
+                                    @error('quantity')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="date"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Ilość') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="date" type="date"
+                                        class="form-control @error('date') is-invalid @enderror" name="date" required
+                                        autocomplete="new-date">
+
+
+                                    @error('date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -62,14 +82,27 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                <label for="type"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Typ') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                    <select id="type" class="form-control @error('type') is-invalid @enderror"
+                                        name="type" required autocomplete="new-type">
+                                        <option value="null" selected>wybierz typ</option>
+                                        <option value="jedzenie">jedzenie </option>
+                                        <option value="podatki">podatki </option>
+                                        <option value="zachcianki">zachcianki </option>
+                                    </select>
+
+                                    @error('type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
+
+
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">

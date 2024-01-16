@@ -13,6 +13,7 @@ class Expension extends Model
         "name",
         "price_one",
         "quantity",
-        "type"
+        "type",
+        "date"
     ];
 }

@@ -19,7 +19,6 @@ class ExpensionController extends Controller
      */
     public function create()
     {
-        //
         return view('expenses.create');
     }
 
@@ -28,7 +27,7 @@ class ExpensionController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return view('expenses.create');
     }
 
     /**

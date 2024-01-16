@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->double('price_one');
             $table->double('quantity');
             $table->unsignedBigInteger('type');
-            $table->dateTime('date')->nullable();
+            $table->date('date');
 
             $table->timestamps();
 
