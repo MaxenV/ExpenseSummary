@@ -24,4 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/summary', [ExpensionController::class, 'index'])->name('expenses.index');
 
 Route::get('/addExpanses', [ExpensionController::class, 'create'])->name('expenses.create');
-Route::get('/addExpanses', [ExpensionController::class, 'store'])->name('expenses.store');
+Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expenses.store');

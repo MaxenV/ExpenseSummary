@@ -9,8 +9,10 @@ class Expension extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         "name",
+        "userId",
         "price_one",
         "quantity",
         "type",

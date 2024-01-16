@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expension;
 use Illuminate\Http\Request;
 
 class ExpensionController extends Controller
@@ -27,6 +28,15 @@ class ExpensionController extends Controller
      */
     public function store(Request $request)
     {
+        $expension = new Expension();
+        $expension->name = $request->name;
+        $expension->userId = 1;
+        $expension->price_one = $request->price;
+        $expension->quantity = $request->quantity;
+        $expension->type = 1;
+        $expension->date = $request->date;
+        $expension->save();
+
         return view('expenses.create');
     }
 

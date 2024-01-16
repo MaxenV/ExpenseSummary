@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('expensions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('userId');
             $table->string('name');
