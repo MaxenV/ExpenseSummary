@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expension;
 use Illuminate\Http\Request;
+use App\Models\Type;
 
 class ExpensionController extends Controller
 {
@@ -12,7 +13,10 @@ class ExpensionController extends Controller
      */
     public function index()
     {
-        return view('expenses.index');
+        return view('expenses.index', [
+            'expensions' => Expension::all(),
+            "types" => Type::all(),
+        ]);
     }
 
     /**
@@ -45,7 +49,7 @@ class ExpensionController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
