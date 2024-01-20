@@ -5,14 +5,22 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dodawanie wydatku') }}</div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        {{ __('Dodawanie wydatku') }}
+                        <a href="{{ route('expenses.index') }}">
+                            <button class="btn-sm btn btn-primary ">
+                                Powrót
+                            </button>
+                        </a>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('expenses.store') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nazwa') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Nazwa') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -89,9 +97,9 @@
                                     <select id="type" class="form-control @error('type') is-invalid @enderror"
                                         name="type" required autocomplete="new-type">
                                         <option value="null" selected>wybierz typ</option>
-                                        <option value="jedzenie">jedzenie </option>
-                                        <option value="podatki">podatki </option>
-                                        <option value="zachcianki">zachcianki </option>
+                                        <option value="1">jedzenie </option>
+                                        <option value="2">podatki </option>
+                                        <option value="3">zachcianki </option>
                                     </select>
 
                                     @error('type')
@@ -106,9 +114,14 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                    <button type="submit" class="btn btn-success me-4 px-3">
+                                        {{ __('Dodaj') }}
                                     </button>
+                                    <a href="{{ route('expenses.index') }}">
+                                        <button class="btn btn-primary px-3" type="button">
+                                            Powrót
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </form>

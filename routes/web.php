@@ -15,7 +15,7 @@ use App\Http\Controllers\ExpensionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route("expenses.index"));
 });
 
 Auth::routes();

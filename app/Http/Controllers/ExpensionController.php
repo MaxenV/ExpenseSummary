@@ -36,9 +36,11 @@ class ExpensionController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $expension = new Expension();
         $expension->name = $request->name;
-        $expension->userId = 3;
+        $expension->userId = $user->id;
         $expension->price_one = $request->price;
         $expension->quantity = $request->quantity;
         $expension->type = 1;
