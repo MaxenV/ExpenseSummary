@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExpensionController;
 
@@ -29,3 +30,9 @@ Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expens
 Route::get('/edit/{expension}', [ExpensionController::class, 'edit'])->name('expenses.edit')->middleware('auth');
 Route::post('/edit/{expension}', [ExpensionController::class, 'update'])->name('expenses.update')->middleware('auth');
 Route::delete('/delete/{expension}', [ExpensionController::class, 'destroy'])->name('expenses.delete')->middleware('auth');
+
+
+Route::get('/types', [TypeController::class, 'index'])->name('types.index')->middleware('auth');
+Route::post('/types', [TypeController::class, 'store'])->name('types.store')->middleware('auth');
+// Route::post('types/edit/{type}', [TypeController::class, 'update'])->name('types.update')->middleware('auth');
+// Route::delete('types/delete/{type}', [TypeController::class, 'destroy'])->name('types.delete')->middleware('auth');
