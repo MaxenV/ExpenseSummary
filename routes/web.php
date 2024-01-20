@@ -35,4 +35,4 @@ Route::delete('/delete/{expension}', [ExpensionController::class, 'destroy'])->n
 Route::get('/types', [TypeController::class, 'index'])->name('types.index')->middleware('auth');
 Route::post('/types', [TypeController::class, 'store'])->name('types.store')->middleware('auth');
 // Route::post('types/edit/{type}', [TypeController::class, 'update'])->name('types.update')->middleware('auth');
-// Route::delete('types/delete/{type}', [TypeController::class, 'destroy'])->name('types.delete')->middleware('auth');
+Route::delete('types/{type}', [TypeController::class, 'destroy'])->name('types.delete')->middleware('auth');

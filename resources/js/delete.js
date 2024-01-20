@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         $.ajax({
                                 method: "DELETE",
-                                url: "/delete/" + $(this).data("id"),
+                                url: deleteUrl + $(this).data("id"),
                                 data: {
                                     _token: csrfToken,
                                     expension: $(this).data("id")

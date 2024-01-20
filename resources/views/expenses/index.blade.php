@@ -89,13 +89,14 @@
 
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
+
+    @vite(['resources/js/summaryGraph.js'])
+    @vite(['resources/js/delete.js'])
 @endsection
 
 @section('javascript')
     <script type="text/javascript">
-        const deleteUrl = "{{ url('delete') }}/";
+        const deleteUrl = "{{ url('types') }}/";
         let csrfToken = "{{ csrf_token() }}";
     </script>
 @endsection
-@vite(['resources/js/summaryGraph.js'])
-@vite(['resources/js/delete.js'])

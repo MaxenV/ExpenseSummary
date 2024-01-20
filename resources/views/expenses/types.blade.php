@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="options col-sm-3 text-center">
                                     <a href="#"><button class="btn btn-success px-4">Edit</button></a>
-                                    <a href="#"><button class="btn btn-danger px-3">Delete</button></a>
+                                    <button class="btn btn-danger px-3 delete" data-id="{{ $type->id }}">Delete</button>
                                 </div>
                             </li>
                         @endforeach
@@ -56,7 +56,7 @@
 
 @section('javascript')
     <script type="text/javascript">
-        const deleteUrl = "{{ url('delete') }}/";
+        const deleteUrl = "{{ url('types') }}/";
         let csrfToken = "{{ csrf_token() }}";
     </script>
 @endsection

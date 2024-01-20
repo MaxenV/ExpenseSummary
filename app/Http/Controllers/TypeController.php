@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class TypeController extends Controller
 {
@@ -76,6 +77,16 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        try {
+            $type->delete();
+            return response()->json(['status' => 'success']);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                "message" => "Wystąpił błąd!"
+            ])->setStatusCode(500);
+        }
+
     }
 }
