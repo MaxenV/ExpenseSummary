@@ -28,3 +28,4 @@ Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expens
 
 Route::get('/edit/{expension}', [ExpensionController::class, 'edit'])->name('expenses.edit')->middleware('auth');
 Route::post('/edit/{expension}', [ExpensionController::class, 'update'])->name('expenses.update')->middleware('auth');
+Route::delete('/delete/{expension}', [ExpensionController::class, 'destroy'])->name('expenses.delete')->middleware('auth');

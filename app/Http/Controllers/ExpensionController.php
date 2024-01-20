@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expension;
 use Illuminate\Http\Request;
 use App\Models\Type;
+use Exception;
 
 class ExpensionController extends Controller
 {
@@ -77,8 +78,18 @@ class ExpensionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Expension $expension)
     {
-        //
+        try {
+            $expension->delete();
+            return response()->json(['status' => 'success']);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                "message" => "Wystąpił błąd!"
+            ])->setStatusCode(500);
+        }
+
     }
 }

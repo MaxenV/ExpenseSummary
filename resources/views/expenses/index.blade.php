@@ -130,7 +130,8 @@
                                         <td class="d-flex justify-content-around">
                                             <a href="{{ route('expenses.edit', $expension->id) }}"> <button
                                                     class="btn btn-success">edit</button></a>
-                                            <a href=""> <button class="btn btn-danger">delete</button> </a>
+                                            <button class="btn btn-danger btn-sm delete"
+                                                data-id="{{ $expension->id }}">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -160,6 +161,13 @@
 
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
-
-    @vite(['resources/js/summaryGraph.js'])
 @endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        const deleteUrl = "{{ url('delete') }}/";
+        let csrfToken = "{{ csrf_token() }}";
+    </script>
+@endsection
+@vite(['resources/js/summaryGraph.js'])
+@vite(['resources/js/delete.js'])
