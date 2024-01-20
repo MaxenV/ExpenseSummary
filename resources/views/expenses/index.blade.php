@@ -128,7 +128,8 @@
                                         <td>{{ $types[$expension->type]['name'] }}</td>
                                         <td>{{ date('Y-m-d', strtotime($expension->date)) }} </td>
                                         <td class="d-flex justify-content-around">
-                                            <a href=""> <button class="btn btn-success">edit</button></a>
+                                            <a href="{{ route('expenses.edit', $expension->id) }}"> <button
+                                                    class="btn btn-success">edit</button></a>
                                             <a href=""> <button class="btn btn-danger">delete</button> </a>
                                         </td>
                                     </tr>

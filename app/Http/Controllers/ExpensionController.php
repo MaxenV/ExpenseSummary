@@ -55,9 +55,12 @@ class ExpensionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Expension $expension)
     {
-        //
+        return view(
+            "expenses.edit",
+            ["expension" => $expension]
+        );
     }
 
     /**
@@ -65,7 +68,10 @@ class ExpensionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('expenses.index', [
+            'expensions' => Expension::all(),
+            "types" => Type::all(),
+        ]);
     }
 
     /**

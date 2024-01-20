@@ -25,3 +25,6 @@ Route::get('/summary', [ExpensionController::class, 'index'])->name('expenses.in
 
 Route::get('/addExpanses', [ExpensionController::class, 'create'])->name('expenses.create')->middleware('auth');
 Route::post('/addExpanses', [ExpensionController::class, 'store'])->name('expenses.store')->middleware('auth');
+
+Route::get('/edit/{expension}', [ExpensionController::class, 'edit'])->name('expenses.edit')->middleware('auth');
+Route::post('/edit/{expension}', [ExpensionController::class, 'update'])->name('expenses.update')->middleware('auth');
