@@ -70,7 +70,7 @@
                                 <div class="col-md-6">
                                     <input id="date" type="date"
                                         class="form-control @error('date') is-invalid @enderror" name="date" required
-                                        autocomplete="new-date" value="{{ $expension->date }}">
+                                        value="{{ $expension->date }}">
 
 
                                     @error('date')
@@ -89,9 +89,9 @@
                                     <select id="type" class="form-control @error('type') is-invalid @enderror"
                                         name="type" required autocomplete="new-type">
                                         <option value="null" selected>wybierz typ</option>
-                                        <option value="jedzenie">jedzenie </option>
-                                        <option value="podatki">podatki </option>
-                                        <option value="zachcianki">zachcianki </option>
+                                        <option value="1">jedzenie </option>
+                                        <option value="2">podatki </option>
+                                        <option value="3">zachcianki </option>
                                     </select>
 
                                     @error('type')

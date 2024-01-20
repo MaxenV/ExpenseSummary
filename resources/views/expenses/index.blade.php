@@ -109,6 +109,7 @@
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
+                                    <th>user id</th>
                                     <th>Nazwa</th>
                                     <th>Cena jednostki</th>
                                     <th>ilosc</th>
@@ -121,6 +122,7 @@
                             <tbody>
                                 @foreach ($expensions as $expension)
                                     <tr>
+                                        <td>{{ $expension->userId }}</td>
                                         <td>{{ $expension->name }}</td>
                                         <td>{{ $expension->price_one }} PLN</td>
                                         <td>{{ $expension->quantity }}</td>

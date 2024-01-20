@@ -6,6 +6,8 @@ use App\Models\Expension;
 use Illuminate\Http\Request;
 use App\Models\Type;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+
 
 class ExpensionController extends Controller
 {
@@ -14,8 +16,9 @@ class ExpensionController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         return view('expenses.index', [
-            'expensions' => Expension::all(),
+            'expensions' => Expension::where('userId', $user->id)->get(),
             "types" => Type::all(),
         ]);
     }
@@ -35,7 +38,7 @@ class ExpensionController extends Controller
     {
         $expension = new Expension();
         $expension->name = $request->name;
-        $expension->userId = 1;
+        $expension->userId = 3;
         $expension->price_one = $request->price;
         $expension->quantity = $request->quantity;
         $expension->type = 1;
@@ -67,12 +70,13 @@ class ExpensionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Expension $expension)
     {
-        return view('expenses.index', [
-            'expensions' => Expension::all(),
-            "types" => Type::all(),
-        ]);
+        //
+        $expension->fill($request->all());
+        $expension->save();
+
+        return redirect(route("expenses.index"));
     }
 
     /**
