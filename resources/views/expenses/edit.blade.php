@@ -57,7 +57,7 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Ilość') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="quantity" type="number" min="0"
+                                    <input id="quantity" type="number" min="0" step="0.001"
                                         class="form-control @error('quantity') is-invalid @enderror" name="quantity"
                                         required autocomplete="new-quantity" value="{{ $expense->quantity }}">
 

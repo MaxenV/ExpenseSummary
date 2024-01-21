@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\ExpenseRequest;
+
 
 class ExpensesController extends Controller
 {
@@ -42,7 +44,7 @@ class ExpensesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ExpenseRequest $request)
     {
         $user = Auth::user();
 
@@ -90,7 +92,7 @@ class ExpensesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Expense $expense)
+    public function update(ExpenseRequest $request, Expense $expense)
     {
         //
         $expense->fill($request->all());
