@@ -90,23 +90,59 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="type"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Typ') }}</label>
+                                <div class="row m-0 p-0">
+                                    <label for="type"
+                                        class="col-md-4 col-form-label text-md-end">{{ __('Typ') }}</label>
 
-                                <div class="col-md-6">
-                                    <select id="type" class="form-control @error('type') is-invalid @enderror"
-                                        name="type" required autocomplete="new-type">
-                                        <option value="nieznany" selected>wybierz typ</option>
-                                        <option value="jedzenie">jedzenie </option>
-                                        <option value="podatki">podatki </option>
-                                        <option value="zachcianki">zachcianki </option>
-                                    </select>
+                                    <div class="col-md-6">
+                                        <select id="type" class="form-control @error('type') is-invalid @enderror"
+                                            name="type" required autocomplete="new-type">
+                                            @foreach ($existingTypes as $type)
+                                                <option value="{{ $type[0]->type }}"
+                                                    @if ($expension->type == $type[0]->type) selected @endif>{{ $type[0]->type }}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
-                                    @error('type')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        @error('type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row m-0 mb-1 mt-2 p-0 d-flex justify-content-center">
+                                    <label for="newTypeCheck"
+                                        class="col-md-4 offset-2 form-check-label text-md-end">{{ __('Nieznany typ') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="newTypeCheck" type="checkbox"
+                                            class="form-check-input
+                                            @error('newTypeCheck') is-invalid @enderror"
+                                            name="newTypeCheck">
+
+                                        @error('type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 p-0 overflow-hidden newTypeContainer">
+                                    <label for="newType"
+                                        class="col-md-4 col-form-label text-md-end">{{ __('Nowy typ') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input type="text" name="newType" id="newType"
+                                            class="form-control @error('quantity') is-invalid @enderror" name="quantity">
+
+                                        @error('type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -130,4 +166,6 @@
             </div>
         </div>
     </div>
+
+    @vite(['resources/js/newType.js', 'resources/css/editCreate.css'])
 @endsection

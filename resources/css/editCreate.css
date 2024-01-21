@@ -1,0 +1,4 @@
+.newTypeContainer{
+    transform: scaleY(0);
+    transition: .3s;
+}

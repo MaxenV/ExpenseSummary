@@ -43,11 +43,17 @@ class ExpensionController extends Controller
         $expension->userId = $user->id;
         $expension->price_one = $request->price;
         $expension->quantity = $request->quantity;
-        $expension->type = $request->type;
         $expension->date = $request->date;
+
+        if ($request->newTypeCheck) {
+            $expension->type = $request->newType;
+        } else {
+            $expension->type = $request->type;
+        }
+
         $expension->save();
 
-        return view('expenses.create');
+        return redirect(route('expenses.create'));
     }
 
     /**
@@ -63,9 +69,13 @@ class ExpensionController extends Controller
      */
     public function edit(Expension $expension)
     {
+        $existingTypes = Expension::all('type')->groupBy('type');
         return view(
             "expenses.edit",
-            ["expension" => $expension]
+            [
+                "expension" => $expension,
+                'existingTypes' => $existingTypes
+            ]
         );
     }
 
