@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('expenses.update', $expension->id) }}">
+                        <form method="POST" action="{{ route('expenses.update', $expense->id) }}">
                             @csrf
 
                             <div class="row mb-3">
@@ -25,7 +25,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ $expension->name }}" required autofocus autocomplete="name">
+                                        value="{{ $expense->name }}" required autofocus autocomplete="name">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                                 <div class="col-md-6">
                                     <input id="price" type="number" step="0.01" min="0"
                                         class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ $expension->price_one }}" required autocomplete="price">
+                                        value="{{ $expense->price_one }}" required autocomplete="price">
 
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                                 <div class="col-md-6">
                                     <input id="quantity" type="number" min="0"
                                         class="form-control @error('quantity') is-invalid @enderror" name="quantity"
-                                        required autocomplete="new-quantity" value="{{ $expension->quantity }}">
+                                        required autocomplete="new-quantity" value="{{ $expense->quantity }}">
 
 
                                     @error('quantity')
@@ -78,7 +78,7 @@
                                 <div class="col-md-6">
                                     <input id="date" type="date"
                                         class="form-control @error('date') is-invalid @enderror" name="date" required
-                                        value="{{ $expension->date }}">
+                                        value="{{ $expense->date }}">
 
 
                                     @error('date')
@@ -99,7 +99,7 @@
                                             name="type" required autocomplete="new-type">
                                             @foreach ($existingTypes as $type)
                                                 <option value="{{ $type[0]->type }}"
-                                                    @if ($expension->type == $type[0]->type) selected @endif>{{ $type[0]->type }}
+                                                    @if ($expense->type == $type[0]->type) selected @endif>{{ $type[0]->type }}
                                                 </option>
                                             @endforeach
                                         </select>

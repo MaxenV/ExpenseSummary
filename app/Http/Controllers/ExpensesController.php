@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expension;
+use App\Models\Expense;
 use Illuminate\Http\Request;
-use App\Models\Type;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
 
-class ExpensionController extends Controller
+class ExpensesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class ExpensionController extends Controller
     {
         $user = Auth::user();
         return view('expenses.index', [
-            'expensions' => Expension::where('userId', $user->id)->get(),
+            'expenses' => Expense::where('userId', $user->id)->get(),
         ]);
     }
 
@@ -27,7 +26,7 @@ class ExpensionController extends Controller
      */
     public function create()
     {
-        $existingTypes = Expension::all('type')->groupBy('type');
+        $existingTypes = Expense::all('type')->groupBy('type');
         return view('expenses.create', ['existingTypes' => $existingTypes]);
     }
 
@@ -38,20 +37,20 @@ class ExpensionController extends Controller
     {
         $user = Auth::user();
 
-        $expension = new Expension();
-        $expension->name = $request->name;
-        $expension->userId = $user->id;
-        $expension->price_one = $request->price;
-        $expension->quantity = $request->quantity;
-        $expension->date = $request->date;
+        $expense = new Expense();
+        $expense->name = $request->name;
+        $expense->userId = $user->id;
+        $expense->price_one = $request->price;
+        $expense->quantity = $request->quantity;
+        $expense->date = $request->date;
 
         if ($request->newTypeCheck) {
-            $expension->type = $request->newType;
+            $expense->type = $request->newType;
         } else {
-            $expension->type = $request->type;
+            $expense->type = $request->type;
         }
 
-        $expension->save();
+        $expense->save();
 
         return redirect(route('expenses.create'));
     }
@@ -67,13 +66,13 @@ class ExpensionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Expension $expension)
+    public function edit(Expense $expense)
     {
-        $existingTypes = Expension::all('type')->groupBy('type');
+        $existingTypes = Expense::all('type')->groupBy('type');
         return view(
             "expenses.edit",
             [
-                "expension" => $expension,
+                "expense" => $expense,
                 'existingTypes' => $existingTypes
             ]
         );
@@ -82,11 +81,11 @@ class ExpensionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Expension $expension)
+    public function update(Request $request, Expense $expense)
     {
         //
-        $expension->fill($request->all());
-        $expension->save();
+        $expense->fill($request->all());
+        $expense->save();
 
         return redirect(route("expenses.index"));
     }
@@ -94,10 +93,10 @@ class ExpensionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Expension $expension)
+    public function destroy(Expense $expense)
     {
         try {
-            $expension->delete();
+            $expense->delete();
             return response()->json(['status' => 'success']);
 
         } catch (Exception $e) {

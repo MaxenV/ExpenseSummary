@@ -46,20 +46,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expensions as $expension)
+                                @foreach ($expenses as $expense)
                                     <tr>
-                                        <td>{{ $expension->userId }}</td>
-                                        <td>{{ $expension->name }}</td>
-                                        <td>{{ $expension->price_one }} PLN</td>
-                                        <td>{{ $expension->quantity }}</td>
-                                        <td>{{ $expension->price_one * $expension->quantity }} PLN</td>
-                                        <td>{{ $expension->type }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($expension->date)) }} </td>
+                                        <td>{{ $expense->userId }}</td>
+                                        <td>{{ $expense->name }}</td>
+                                        <td>{{ $expense->price_one }} PLN</td>
+                                        <td>{{ $expense->quantity }}</td>
+                                        <td>{{ $expense->price_one * $expense->quantity }} PLN</td>
+                                        <td>{{ $expense->type }}</td>
+                                        <td>{{ date('Y-m-d', strtotime($expense->date)) }} </td>
                                         <td class="d-flex justify-content-around">
-                                            <a href="{{ route('expenses.edit', $expension->id) }}"> <button
+                                            <a href="{{ route('expenses.edit', $expense->id) }}"> <button
                                                     class="btn btn-success">edit</button></a>
                                             <button class="btn btn-danger btn-sm delete"
-                                                data-id="{{ $expension->id }}">Delete</button>
+                                                data-id="{{ $expense->id }}">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

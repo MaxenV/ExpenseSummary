@@ -27,6 +27,7 @@ return new class extends Migration {
         $usersData = array(
             ["name" => "test", "surname" => "test", "email" => "test@test.pl", "password" => '$2y$12$h3Ri.Fa5/FMZ0m60ZoBUUeujn2RsB5hexAWnWtBlE8MsnnFiY1sTi'],
             ["name" => "test1", "surname" => "test1", "email" => "test3@test.pl", "password" => '$2y$12$h3Ri.Fa5/FMZ0m60ZoBUUeujn2RsB5hexAWnWtBlE8MsnnFiY1sTi'],
+            ["name" => "email", "surname" => "email2", "email" => "email@test.pl", "password" => '$2y$12$w8vcv8YiBScJSIN3SWnBROUHm/xc/hCWfNOdX6PiQ91aNnai5idga'],
         );
         foreach ($usersData as $datum) {
             $userCategory = new User();

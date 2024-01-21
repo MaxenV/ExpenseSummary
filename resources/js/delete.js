@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 url: deleteUrl + $(this).data("id"),
                                 data: {
                                     _token: csrfToken,
-                                    expension: $(this).data("id")
+                                    expense: $(this).data("id")
                                 }
                             })
                             .done(function(data) {
