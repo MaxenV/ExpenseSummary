@@ -27,7 +27,8 @@ class ExpensionController extends Controller
      */
     public function create()
     {
-        return view('expenses.create');
+        $existingTypes = Expension::all('type')->groupBy('type');
+        return view('expenses.create', ['existingTypes' => $existingTypes]);
     }
 
     /**
