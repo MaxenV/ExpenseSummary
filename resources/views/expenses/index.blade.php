@@ -35,30 +35,35 @@
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th>user id</th>
-                                    <th>Nazwa</th>
-                                    <th>Cena jednostki</th>
-                                    <th>ilosc</th>
-                                    <th>Cena</th>
-                                    <th>typ</th>
-                                    <th>data</th>
-                                    <th class="col-sm-2">Options</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Nazwa</th>
+                                    <th class="text-center">Cena jednostki</th>
+                                    <th class="text-center">ilosc</th>
+                                    <th class="text-center">Cena</th>
+                                    <th class="text-center">typ</th>
+                                    <th class="text-center">data</th>
+                                    <th class="text-center">Options</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($expenses as $expense)
                                     <tr>
-                                        <td>{{ $expense->userId }}</td>
-                                        <td>{{ $expense->name }}</td>
-                                        <td>{{ $expense->price_one }} PLN</td>
-                                        <td>{{ $expense->quantity }}</td>
-                                        <td>{{ $expense->price_one * $expense->quantity }} PLN</td>
-                                        <td>{{ $expense->type }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($expense->date)) }} </td>
-                                        <td class="d-flex justify-content-around">
-                                            <a href="{{ route('expenses.edit', $expense->id) }}"> <button
-                                                    class="btn btn-success">edit</button></a>
-                                            <button class="btn btn-danger btn-sm delete"
+                                        <td class="text-center align-middle">{{ $expense->name }}</td>
+                                        <td class="text-center align-middle">{{ $expense->name }}</td>
+                                        <td class="text-center align-middle">{{ $expense->price_one }} PLN</td>
+                                        <td class="text-center align-middle">{{ $expense->quantity }}</td>
+                                        <td class="text-center align-middle">
+                                            {{ $expense->price_one * $expense->quantity }}
+                                            PLN
+                                        </td>
+                                        <td class="text-center align-middle">{{ $expense->type }}</td>
+                                        <td class="text-center align-middle">
+                                            {{ date('Y-m-d', strtotime($expense->date)) }}
+                                        </td>
+                                        <td class=" text-center align-middle d-flex justify-content-around ">
+                                            <a href="{{ route('expenses.edit', $expense->id) }}" class="col-sm-3"> <button
+                                                    class="btn btn-success col-sm-12 ">Edit</button></a>
+                                            <button class="btn btn-danger btn-sm delete col-sm-3 "
                                                 data-id="{{ $expense->id }}">Delete</button>
                                         </td>
                                     </tr>
@@ -73,11 +78,16 @@
 
 
 
+
     <script>
         const graphData = {
-            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"],
             datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                data: [
+                    @foreach ($expensesByDayOfWeek as $dayOfWeek => $totalAmount)
+                        {{ $totalAmount }},
+                    @endforeach
+                ],
                 lineTension: 0,
                 backgroundColor: 'transparent',
                 borderColor: '#007bff',

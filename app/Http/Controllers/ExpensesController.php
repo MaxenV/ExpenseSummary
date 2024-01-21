@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,16 @@ class ExpensesController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $expensesByDayOfWeek = Expense::select(
+            DB::raw('DAYOFWEEK(date) as day_of_week'),
+            DB::raw('SUM(price_one * quantity) as total_amount')
+        )
+            ->groupBy('day_of_week')
+            ->pluck('total_amount', 'day_of_week');
+
         return view('expenses.index', [
             'expenses' => Expense::where('userId', $user->id)->get(),
+            'expensesByDayOfWeek' => $expensesByDayOfWeek
         ]);
     }
 
