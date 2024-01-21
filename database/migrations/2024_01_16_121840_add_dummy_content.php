@@ -13,7 +13,6 @@ return new class extends Migration {
     public function up(): void
     {
         $this->add_users();
-        $this->add_types();
     }
 
     /**
@@ -39,20 +38,4 @@ return new class extends Migration {
     }
 
 
-    function add_types()
-    {
-        $typesData = [
-            ["name" => "nazwa", "user_id" => 1],
-            ["name" => "nazwa2", "user_id" => 1],
-            ["name" => "nazwa3", "user_id" => 1],
-            ["name" => "nazwa3", "user_id" => 1],
-        ];
-
-        foreach ($typesData as $datum) {
-            $dataCategory = new Type();
-            $dataCategory->name = $datum['name'];
-            $dataCategory->userId = $datum['user_id'];
-            $dataCategory->save();
-        }
-    }
 };

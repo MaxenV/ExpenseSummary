@@ -19,7 +19,6 @@ class ExpensionController extends Controller
         $user = Auth::user();
         return view('expenses.index', [
             'expensions' => Expension::where('userId', $user->id)->get(),
-            "types" => Type::all(),
         ]);
     }
 
@@ -43,7 +42,7 @@ class ExpensionController extends Controller
         $expension->userId = $user->id;
         $expension->price_one = $request->price;
         $expension->quantity = $request->quantity;
-        $expension->type = 1;
+        $expension->type = $request->type;
         $expension->date = $request->date;
         $expension->save();
 

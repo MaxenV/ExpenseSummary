@@ -53,7 +53,7 @@
                                         <td>{{ $expension->price_one }} PLN</td>
                                         <td>{{ $expension->quantity }}</td>
                                         <td>{{ $expension->price_one * $expension->quantity }} PLN</td>
-                                        <td>{{ $types[$expension->type]['name'] }}</td>
+                                        <td>{{ $expension->type }}</td>
                                         <td>{{ date('Y-m-d', strtotime($expension->date)) }} </td>
                                         <td class="d-flex justify-content-around">
                                             <a href="{{ route('expenses.edit', $expension->id) }}"> <button
@@ -96,7 +96,7 @@
 
 @section('javascript')
     <script type="text/javascript">
-        const deleteUrl = "{{ url('types') }}/";
+        const deleteUrl = "{{ url('delete') }}/";
         let csrfToken = "{{ csrf_token() }}";
     </script>
 @endsection

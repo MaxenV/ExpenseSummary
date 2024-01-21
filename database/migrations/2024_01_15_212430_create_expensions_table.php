@@ -16,13 +16,12 @@ return new class extends Migration {
             $table->string('name');
             $table->double('price_one');
             $table->double('quantity');
-            $table->unsignedBigInteger('type');
+            $table->string('type');
             $table->date('date');
 
             $table->timestamps();
 
             $table->foreign('userId')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('type')->references('id')->on('types')->cascadeOnDelete();
         });
     }
 

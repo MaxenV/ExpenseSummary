@@ -96,10 +96,10 @@
                                 <div class="col-md-6">
                                     <select id="type" class="form-control @error('type') is-invalid @enderror"
                                         name="type" required autocomplete="new-type">
-                                        <option value="null" selected>wybierz typ</option>
-                                        <option value="1">jedzenie </option>
-                                        <option value="2">podatki </option>
-                                        <option value="3">zachcianki </option>
+                                        <option value="nieznany" selected>wybierz typ</option>
+                                        <option value="jedzenie">jedzenie </option>
+                                        <option value="podatki">podatki </option>
+                                        <option value="zachcianki">zachcianki </option>
                                     </select>
 
                                     @error('type')
