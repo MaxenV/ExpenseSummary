@@ -92,8 +92,8 @@ class ExpensesController extends Controller
      */
     public function update(ExpenseRequest $request, Expense $expense)
     {
-        //
         $expense->fill($request->all());
+        $expense->type = $request->newTypeCheck ? $request->newType : $request->type;
         $expense->save();
 
         return redirect(route("expenses.index"));
