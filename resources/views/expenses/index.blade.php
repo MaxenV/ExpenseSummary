@@ -3,26 +3,16 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @include('components.sideNav')
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <main role="main" class="col-lg-12 pt-3 px-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button class="btn btn-sm btn-outline-secondary">Share</button>
-                            <button class="btn btn-sm btn-outline-secondary">Export</button>
-                        </div>
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            This week
-                        </button>
-                    </div>
+                    <h1 class="h2">Wykres wydatków</h1>
+                    Porównanie wydatków w różnych dniach tygodnia
                 </div>
 
                 <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 
-                <h2>Section title</h2>
+                <h2>Lista wydatków</h2>
                 <div class="row">
                     <div class="float-end">
                         <a href="addExpanses" class='d-block float-end'>
@@ -60,10 +50,11 @@
                                         <td class="text-center align-middle">
                                             {{ date('Y-m-d', strtotime($expense->date)) }}
                                         </td>
-                                        <td class=" text-center align-middle d-flex justify-content-around ">
-                                            <a href="{{ route('expenses.edit', $expense->id) }}" class="col-sm-3"> <button
-                                                    class="btn btn-success col-sm-12 ">Edit</button></a>
-                                            <button class="btn btn-danger btn-sm delete col-sm-3 "
+                                        <td class=" text-center align-middle d-flex justify-content-around flex-wrap">
+                                            <a href="{{ route('expenses.edit', $expense->id) }}"
+                                                class=" col-lg-5 text-center ">
+                                                <button class="btn btn-success col-sm-12 px-4 text-center">Edit</button></a>
+                                            <button class="btn btn-danger btn-sm delete  col-lg-5 px-3 text-center"
                                                 data-id="{{ $expense->id }}">Delete</button>
                                         </td>
                                     </tr>
