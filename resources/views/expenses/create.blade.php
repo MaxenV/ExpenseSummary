@@ -36,15 +36,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="price"
+                                <label for="price_one"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Cena jednostki') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="number" step="0.01" min="0"
-                                        class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ old('price') }}" required autocomplete="price">
+                                    <input id="price_one" type="number" step="0.01" min="0"
+                                        class="form-control @error('price_one') is-invalid @enderror" name="price_one"
+                                        value="{{ old('price_one') }}" required autocomplete="price_one">
 
-                                    @error('price')
+                                    @error('price_one')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -59,7 +59,7 @@
                                 <div class="col-md-6">
                                     <input id="quantity" type="number" min="0" step="0.001"
                                         class="form-control @error('quantity') is-invalid @enderror" name="quantity"
-                                        required autocomplete="new-quantity">
+                                        required autocomplete="new-quantity" value="{{ old('quantity') }}">
 
 
                                     @error('quantity')
@@ -78,7 +78,7 @@
                                 <div class="col-md-6">
                                     <input id="date" type="date"
                                         class="form-control @error('date') is-invalid @enderror" name="date" required
-                                        autocomplete="new-date">
+                                        autocomplete="new-date" value="{{ old('date') }}">
 
 
                                     @error('date')
@@ -115,6 +115,7 @@
 
                                     <div class="col-md-6">
                                         <input id="newTypeCheck" type="checkbox"
+                                            {{ old('newTypeCheck') ? 'disabled' : '' }}
                                             class="form-check-input
                                             @error('newTypeCheck') is-invalid @enderror"
                                             name="newTypeCheck">
@@ -133,7 +134,8 @@
 
                                     <div class="col-md-6">
                                         <input type="text" name="newType" id="newType"
-                                            class="form-control @error('quantity') is-invalid @enderror" name="quantity">
+                                            class="form-control @error('newType') is-invalid @enderror"
+                                            value="{{ old('newType') }}">
 
                                         @error('type')
                                             <span class="invalid-feedback" role="alert">
@@ -164,5 +166,15 @@
             </div>
         </div>
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     @vite(['resources/js/newType.js', 'resources/css/editCreate.css'])
 @endsection

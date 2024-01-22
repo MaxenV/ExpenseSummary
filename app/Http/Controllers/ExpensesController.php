@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests\ExpenseRequest;
+use Illuminate\Http\RedirectResponse;
 
 
 class ExpensesController extends Controller
@@ -43,29 +43,27 @@ class ExpensesController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param ExpenseRequest $request
+     * @return RedirectResponse
      */
     public function store(ExpenseRequest $request)
     {
         $user = Auth::user();
 
-        $expense = new Expense();
-        $expense->name = $request->name;
+        $expense = new Expense($request->all());
         $expense->userId = $user->id;
-        $expense->price_one = $request->price;
-        $expense->quantity = $request->quantity;
-        $expense->date = $request->date;
 
-        if ($request->newTypeCheck) {
-            $expense->type = $request->newType;
-        } else {
-            $expense->type = $request->type;
+        $expense->type = $request->newTypeCheck ? $request->newType : $request->type;
+
+        if (!$expense->save()) {
+            return redirect()->route('expenses.create')
+                ->withInput($request->input())
+                ->withErrors($expense->getErrors());
         }
 
-        $expense->save();
-
-        return redirect(route('expenses.create'));
+        return redirect(route('expenses.index'))->with('success', 'Expense added successfully.');
     }
-
     /**
      * Display the specified resource.
      */

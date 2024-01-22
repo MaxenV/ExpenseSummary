@@ -36,15 +36,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="price"
+                                <label for="price_one"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Cena jednostki') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="number" step="0.01" min="0"
-                                        class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ $expense->price_one }}" required autocomplete="price">
+                                    <input id="price_one" type="number" step="0.01" min="0"
+                                        class="form-control @error('price_one') is-invalid @enderror" name="price_one"
+                                        value="{{ $expense->price_one }}" required autocomplete="price_one">
 
-                                    @error('price')
+                                    @error('price_one')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -135,7 +135,7 @@
 
                                     <div class="col-md-6">
                                         <input type="text" name="newType" id="newType"
-                                            class="form-control @error('quantity') is-invalid @enderror" name="quantity">
+                                            class="form-control @error('quantity') is-invalid @enderror">
 
                                         @error('type')
                                             <span class="invalid-feedback" role="alert">

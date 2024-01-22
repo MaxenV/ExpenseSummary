@@ -15,6 +15,21 @@ class ExpenseRequest extends FormRequest
     }
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'price',
+        'quantity',
+        'date',
+        'type',
+        'newTypeCheck',
+        'newType',
+    ];
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -23,11 +38,12 @@ class ExpenseRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
+            'price_one' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|min:0',
             'date' => 'required|date',
-            'type' => 'required_if:newTypeCheck,false|string|max:255',
-            'newType' => 'required_if:newTypeCheck,true|string|max:255',
+            'type' => 'nullable|string|max:255',
+            'newTypeCheck' => 'nullable|in:true,false,on',
+            'newType' => 'nullable|string|max:255',
         ];
     }
 }
