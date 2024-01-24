@@ -26,10 +26,19 @@ class ExpensesController extends Controller
             ->groupBy('day_of_week')
             ->pluck('total_amount', 'day_of_week');
 
-        return view('expenses.index', [
-            'expenses' => Expense::where('userId', $user->id)->get(),
-            'expensesByDayOfWeek' => $expensesByDayOfWeek
-        ]);
+        // Paginacja głównego zapytania
+        $perPage = 10;
+        $currentPage = request()->input('page', 1);
+        $startNumber = ($currentPage - 1) * $perPage + 1;
+        $expenses = Expense::where('userId', $user->id)
+            ->paginate($perPage, ['*'], 'page', $currentPage);
+        foreach ($expenses as $index => $expense) {
+            $expense->number = $startNumber + $index;
+        }
+
+
+        return view('expenses.index', compact('expenses', 'expensesByDayOfWeek'));
+
     }
 
     /**

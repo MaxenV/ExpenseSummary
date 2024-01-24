@@ -36,9 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expenses as $expense)
+                                @foreach ($expenses as $index => $expense)
                                     <tr>
-                                        <td class="text-center align-middle">{{ $expense->name }}</td>
+                                        <td class="text-center align-middle">{{ $expense->number }}</td>
                                         <td class="text-center align-middle">{{ $expense->name }}</td>
                                         <td class="text-center align-middle">{{ $expense->price_one }} PLN</td>
                                         <td class="text-center align-middle">{{ $expense->quantity }}</td>
@@ -61,6 +61,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $expenses->links('pagination::bootstrap-4') }}
+                        </div>
+
                     </div>
                 </div>
             </main>
